@@ -6,8 +6,9 @@ metadata:
   labels:
     eks.amazonaws.com/component: coredns
     k8s-app: kube-dns
+
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
@@ -32,8 +33,9 @@ rules:
   - nodes
   verbs:
   - get
+
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   annotations:
@@ -51,6 +53,7 @@ subjects:
 - kind: ServiceAccount
   name: coredns
   namespace: kube-system
+
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -78,6 +81,7 @@ data:
         reload
         loadbalance
         autopath @kubernetes
+
     }
 ---
 apiVersion: apps/v1
@@ -174,6 +178,7 @@ spec:
             items:
             - key: Corefile
               path: Corefile
+
 ---
 apiVersion: v1
 kind: Service
@@ -199,8 +204,9 @@ spec:
   - name: dns-tcp
     port: 53
     protocol: TCP
+
 ---
-apiVersion: policy/v1beta1
+apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   name: coredns

@@ -13,20 +13,20 @@
 ## Provision the infrastructure
 
 ### Create terraform shared state
-    cd shared-state 
-    terraform init 
+    cd shared-state
+    terraform init
     terraform apply
 
 ### Create cluster VPC and network
     cd packtclusters-vpc
     terraform workspace new prod1-vpc
-    terraform init 
+    terraform init
     terraform apply
 
 ### Create cluster resources
     cd packtclusters
-    terraform workspace new prod1                
-    terraform init 
+    terraform workspace new prod1
+    terraform init
     terraform apply
 
 ## Configure the cluster
@@ -64,17 +64,22 @@
 
 ### Destroy cluster resources
     cd packtclusters
-    terraform workspace select prod1                
-    terraform init 
+    terraform workspace select prod1
+    terraform init
     terraform destroy
-    
+
 ### Create cluster VPC and network
     cd packtclusters-vpc
     terraform workspace select prod1-vpc
-    terraform init 
+    terraform init
     terraform destroy
-    
+
 ### Create terraform shared state
-    cd shared-state 
-    terraform init 
+    cd shared-state
+    terraform init
     terraform destroy
+
+
+ansible-galaxy collection install kubernetes.core
+
+pip install openshift pyyaml requests

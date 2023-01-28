@@ -1,5 +1,5 @@
 - name: create cluster namespaces
-  k8s:
+  kubernetes.core.k8s:
     definition: "{{ item }}"
     kubeconfig: "{{ k8s_kubeconfig }}"
     state: "{{ k8s_manifests_state }}"
@@ -10,4 +10,3 @@
   retries: 3
   delay: 2
   no_log: "{{ k8s_no_log }}"
-  

@@ -3,6 +3,14 @@ resource "aws_eks_cluster" "eks_cluster" {
   version  = var.cluster_version
   role_arn = aws_iam_role.eks_cluster_role.arn
 
+  enabled_cluster_log_types = [
+    "api",
+    "audit",
+    "authenticator",
+    # "controllerManager",
+    # "scheduler",
+  ]
+
   vpc_config {
     security_group_ids = [aws_security_group.eks_cluster_sg.id]
     subnet_ids         = concat(var.private_subnets, var.public_subnets)
